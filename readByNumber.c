@@ -3,13 +3,19 @@ int main(int argc, char const *argv[])
 {
 	// 1st arg: path to the file
 	// 2nd arg: number of the target line
-	
+
 	//TODO: check arg types
 
 	char c;
 	int lineNum = 0;
-	FILE* fp = NULL;
-	fp = fopen(argv[1], "r+");
+	printf("Input the line number to be printed: ");
+	char ctarget = getchar();
+	printf("\n");
+	int ntarget = ctarget - '0';
+	FILE *fp = NULL;
+
+	// fp = fopen(argv[1], "r+");
+	fp = fopen("./test.txt", "r+");
 	if (!fp)
 	{
 		printf("File open error!");
@@ -17,18 +23,21 @@ int main(int argc, char const *argv[])
 	}
 	while ((c = getc(fp)) != EOF)
 	{
+		//TODO: check whether exceed the maxium of line number
+		if (lineNum >= ntarget)
+		{
+			goto stopReadingFile;
+		}
+		if (lineNum == ntarget - 1)
+		{
+			printf("%c", c);
+		}
 		if ('\n' == c)
 		{
 			lineNum++;
 		}
-		//TODO: check whether exceed the maxium of line number
-		if (lineNum >= argv[2])
-		{
-			goto stopReadingFile;
-		}
-		
 	}
-	stopReadingFile:
+stopReadingFile:
 	fclose(fp);
 	return 0;
 }
