@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 int main(int argc, char const *argv[])
 {
 	// 1st arg: path to the file
@@ -8,14 +9,16 @@ int main(int argc, char const *argv[])
 
 	char c;
 	int lineNum = 0;
-	printf("Input the line number to be printed: ");
-	char ctarget = getchar();
-	printf("\n");
-	int ntarget = ctarget - '0';
+	//printf("argv[2]: %d\n", atoi(argv[2]));
+	
+	// printf("Input the line number to be printed: ");
+	// char ctarget = getchar();
+	// printf("\n");
+	int ntarget = atoi(argv[2]);
 	FILE *fp = NULL;
-
-	// fp = fopen(argv[1], "r+");
-	fp = fopen("./test.txt", "r+");
+	
+	fp = fopen(argv[1], "r+");
+	// fp = fopen("./test.txt", "r+");
 	if (!fp)
 	{
 		printf("File open error!");
@@ -37,6 +40,7 @@ int main(int argc, char const *argv[])
 			lineNum++;
 		}
 	}
+	printf("\n");
 stopReadingFile:
 	fclose(fp);
 	return 0;
