@@ -1,0 +1,11 @@
+编译：
+$ make
+即可在'./bin'中找到可执行文件'test.out'
+
+清除可执行文件：
+$ make clean
+清除'./bin'文件夹及其下所有文件
+
+运行：
+$ ./bin/test.out <path-to-the-target-file>
+可直接使用'./test.txt'的路径查看效果
