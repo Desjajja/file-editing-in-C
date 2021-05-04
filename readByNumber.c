@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-int main(int argc, char const *argv[])
+#include "./readByLine.h"
+int readByLine(const char * path, const char * line_num)
 {
 	// 1st arg: path to the file
 	// 2nd arg: number of the target line
@@ -8,16 +9,16 @@ int main(int argc, char const *argv[])
 	//TODO: check arg types
 
 	char c;
-	int lineNum = 0;
+	int curLineNum = 0;
 	//printf("argv[2]: %d\n", atoi(argv[2]));
 	
 	// printf("Input the line number to be printed: ");
 	// char ctarget = getchar();
 	// printf("\n");
-	int ntarget = atoi(argv[2]);
+	int ntarget = atoi(line_num);
 	FILE *fp = NULL;
 	
-	fp = fopen(argv[1], "r+");
+	fp = fopen(path, "r+");
 	// fp = fopen("./test.txt", "r+");
 	if (!fp)
 	{
@@ -27,17 +28,17 @@ int main(int argc, char const *argv[])
 	while ((c = getc(fp)) != EOF)
 	{
 		//TODO: check whether exceed the maxium of line number
-		if (lineNum >= ntarget)
+		if (curLineNum >= ntarget)
 		{
 			goto stopReadingFile;
 		}
-		if (lineNum == ntarget - 1)
+		if (curLineNum == ntarget - 1)
 		{
 			printf("%c", c);
 		}
 		if ('\n' == c)
 		{
-			lineNum++;
+			curLineNum++;
 		}
 	}
 	printf("\n");
