@@ -2,3 +2,5 @@
 .vscode
 # ignore binary
 bin/
+obj/
+lib/

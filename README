@@ -1,11 +1,20 @@
 编译：
-$ make
-即可在'./bin'中找到可执行文件'test.out'
-
-清除可执行文件：
-$ make clean
-清除'./bin'文件夹及其下所有文件
+$ make build-static //静态库方式编译，目标文件 ./bin/static-test
+$ make build-share //动态库方式编译， 目标文件 ./bin/share-test
 
 运行：
-$ ./bin/test.out <path-to-the-target-file>
-可直接使用'./test.txt'的路径查看效果
+$ make ./bin/static-test <file_path> //运行静态库编译文件
+$ export LD_LIBRARY_PATH=./lib/share && make ./bin/share-test <file_path> //运行动态库编译文件
+
+复原：
+$ make clean //删除lib obj bin文件夹及其下文件
+
+注意：
+预设文件行数上限为10行，单行字符数不超过32个
+
+执行效果：
+$ ./bin/share-test ./test.txt
+> choose one line to read from: 1
+> The line read is: test line 1
+> choose one line to write to: 3
+> Undo:Yes(y)/No(n)y 	//撤销操作，复原初始文件
