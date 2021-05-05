@@ -25,9 +25,9 @@ int main(int argc, char const *argv[])
 	writeByLine(argv[1], cline_content, iwrite, buf_restore, 0);
 	// writeByLine("test.txt", cline_content, iwrite);
 	printf("\nUndo:Yes(y)/No(n)");
-	scanf("%d", &option);
+	scanf("%c", &option);
 	ch = getchar();
-	if(option == "Y" | option == "y")
+	if(option == 'Y' || option == 'y')
 	{
 		writeByLine(argv[1], cline_content, iwrite, buf_restore, 1);	
 	}

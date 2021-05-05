@@ -3,11 +3,11 @@
 #include <string.h>
 #include "../headers/writeByLine.h"
 
-int writeByLine(const char *path, char *cline_content, const char *nline_num, char *buf_restore[32], int restore)
+int writeByLine(const char *path, char *cline_content, const char *nline_num, char buf_restore[MAX_ROW][32], int restore)
 {
-	FILE *fp = fopen(path, "r");
 	if (restore)
 	{
+		FILE *fp = fopen(path, "w");
 		for (int i = 0; i < MAX_ROW; i++)
 		{
 			fputs(buf_restore[i], fp);
@@ -16,6 +16,7 @@ int writeByLine(const char *path, char *cline_content, const char *nline_num, ch
 	}
 	int lineNum = atoi(nline_num);
 	char buf[MAX_ROW][32] = {0};
+	FILE *fp = fopen(path, "r");
 	// load file content into buffer
 	for (int i = 0; i < MAX_ROW; i++)
 	{
@@ -39,7 +40,7 @@ int writeByLine(const char *path, char *cline_content, const char *nline_num, ch
 	{
 		fputs(buf[i], fp);
 	}
-closefile:	
+closefile:
 	fclose(fp);
 	return 0;
 }
