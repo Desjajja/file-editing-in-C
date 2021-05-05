@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../headers/writeByLine.h"
 
-int writeByLine(const char *path, char *cline_content, const char *nline_num, char **buf_restore, int restore)
+int writeByLine(const char *path, char *cline_content, const char *nline_num, char *buf_restore[32], int restore)
 {
 	FILE *fp = fopen(path, "r");
 	if (restore)
